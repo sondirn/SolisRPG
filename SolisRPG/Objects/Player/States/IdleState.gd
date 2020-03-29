@@ -1,4 +1,9 @@
 extends State
 
+var Fsm: StateMachine
+
 func _ready():
-	Fsm = get_parent() as StateMachine
+	pass
+
+func _prepare():
+	Fsm = get_parent()

@@ -2,10 +2,8 @@ extends Node
 
 class_name State
 
-var Fsm
-
 func _prepare():
-	Fsm = get_parent()
+	pass
 
 func _on_enter():
 	pass
