@@ -6,3 +6,4 @@ static func Clamp(value, minimum, maximum):
 	if value < minimum:
 		return minimum
 	return value
+	

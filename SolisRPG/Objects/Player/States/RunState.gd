@@ -5,7 +5,7 @@ var Fsm: StateMachine
 
 func _prepare():
 	Fsm = get_parent()
-	Parent = get_parent().get_parent() as Player
+	Parent = Fsm.get_parent()
 
 func _update(delta):
 	var TRUE_MAX_SPEED = Parent.MAX_SPEED * Parent._speed_modifier

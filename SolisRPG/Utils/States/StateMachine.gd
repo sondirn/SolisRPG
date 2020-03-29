@@ -1,11 +1,11 @@
 extends Node
 
-class_name StateMachine
+class_name StateMachine, "res://icon.png"
 
-var DEBUG: bool = true
-var Parent
+var Parent: Node
 var CurrentState: State
-var PreviousState: State 
+var PreviousState: State
+var DEBUG: = false
 
 func _prepare():
 	Parent = get_parent()

@@ -33,7 +33,7 @@ _global_script_class_icons={
 "Math": "",
 "Player": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "res://icon.png"
 }
 
 [application]

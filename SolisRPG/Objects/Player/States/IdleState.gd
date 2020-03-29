@@ -5,7 +5,7 @@ var Parent: Player
 
 func _prepare():
 	Fsm = get_parent()
-	Parent = get_parent().get_parent() as Player
+	Parent = Fsm.get_parent()
 
 func _update(delta):
 	Parent.velocity = Parent.velocity.move_toward(Vector2.ZERO, Parent.FRICTION * delta)
