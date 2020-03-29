@@ -8,14 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Utils/States/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Utils/States/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"State": "",
+"StateMachine": ""
 }
 
 [application]
 
 config/name="SolisRPG"
+run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
 [rendering]
