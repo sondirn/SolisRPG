@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Player/States/PlayerStateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/States/IdleState.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Player/States/RunState.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Player/Player.png" type="Texture" id=5]
+[ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 6.0
+height = 2.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 3 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Collider"]
@@ -17,9 +23,24 @@ enabled = true
 cast_to = Vector2( 0, 18 )
 
 [node name="Sprite" type="Sprite" parent="."]
+show_behind_parent = true
+material = ExtResource( 6 )
+position = Vector2( 0, -13 )
+texture = ExtResource( 5 )
+hframes = 60
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource( 2 )
+
+[node name="RunState" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true

@@ -1,18 +1,28 @@
 extends KinematicBody2D
 
-export var MAX_SPEED: float = 100;
-export var ACCELERATION: float = 1200;
-export var FRICTION: float = 1200;
-export var GRAVITY: float = 50
+class_name Player
 
-var velocity: Vector2 = Vector2.ZERO
-var speed_modifier: Vector2 = Vector2.ONE
+export var ACCELERATION: float = 1200
+export var FRICTION: float = 1200
+export var MAX_SPEED: float = 100
 
-onready var rayCast: RayCast2D = $Collider/RayCast2D
+var velocity: Vector2
 
-func _process(delta):
-	var input = Vector2.ZERO
-	input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input.y += GRAVITY
-	velocity = velocity.move_toward(input * MAX_SPEED, ACCELERATION * delta)
+#var animationPlayer: AnimationPlayer
+#var animationTree : AnimationTree
+#var animationState: AnimationNodeStateMachinePlayback
+
+var Fsm: StateMachine
+
+var _speed_modifier: float = 1
+
+func _ready():
+	#animationPlayer = $AnimationPlayer
+	#animationTree = $AnimationTree
+	#animationState = animationTree.get("parameters/playback")
+	Fsm = get_node("StateMachine")
+	Fsm._prepare()
+
+func _process(_delta):
+	_speed_modifier = Math.Clamp(_speed_modifier, 0 , 1)
 	velocity = move_and_slide(velocity)

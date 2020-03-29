@@ -3,14 +3,15 @@ extends Node
 class_name StateMachine
 
 var DEBUG: bool = true
-var Parent = get_parent()
+var Parent
 var CurrentState: State
 var PreviousState: State 
 
-func _ready():
+func _prepare():
+	Parent = get_parent()
 	var children = get_children()
 	for child in children:
-		var state: State = child
+		var state = child as State
 		state._prepare()
 	CurrentState = get_child(0)
 	enter_state()
@@ -21,9 +22,9 @@ func enter_state():
 	CurrentState._on_enter()
 
 func change_state(new_state):
-	PreviousState._on_exit()
+	CurrentState._on_exit()
 	PreviousState = CurrentState
-	CurrentState = get_child(new_state)
+	CurrentState = get_node(new_state)
 	enter_state()
 
 func prevoius_sate():
@@ -32,5 +33,8 @@ func prevoius_sate():
 	CurrentState = PreviousState
 	PreviousState = _currentState
 	enter_state()
+	
+func _process(delta):
+	CurrentState._update(delta)
 	
 	
