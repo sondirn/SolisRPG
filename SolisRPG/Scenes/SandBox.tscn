@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Objects/StaticObjects/DefaultTree/Tree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/StaticObjects/DefaultBush/DefaultBush.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/World/GrassBackground.png" type="Texture" id=4]
 [ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=5]
+[ext_resource path="res://Objects/TransitionObjects/SceneTransition.tscn" type="PackedScene" id=6]
 
 [node name="SandBox" type="Node2D"]
 
@@ -54,3 +55,8 @@ collision_mask = 1
 
 [node name="Tree8" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 176, 104 )
+
+[node name="SceneTransition" parent="." instance=ExtResource( 6 )]
+position = Vector2( 264, 120 )
+scale = Vector2( 3.48836, -4.03801 )
+target_scene = "res://Scenes/World.tscn"

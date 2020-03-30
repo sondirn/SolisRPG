@@ -1,8 +1,5 @@
 extends Node2D
 
+class_name SolisWorld
 
-
-
-func _on_Button_pressed():
-	$CanvasLayer/Button.hide()
-	background_load.load_scene("res://Scenes/SandBox.tscn")
+var playerSpawn: Vector2

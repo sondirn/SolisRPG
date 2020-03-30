@@ -58,6 +58,7 @@ func _thread_done(resource):
 	# Set as current scene.
 	get_tree().current_scene = new_scene
 	
+	
 	progress.visible = false
 	background.visible = false
 

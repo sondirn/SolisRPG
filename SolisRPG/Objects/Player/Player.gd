@@ -26,6 +26,3 @@ func _process(_delta):
 	_speed_modifier = Math.Clamp(_speed_modifier, 0 , 1)
 	velocity = move_and_slide(velocity)
 
-func _input(event):
-	if event.is_action_pressed("exit_game"):
-		background_load.load_scene("res://Scenes/SandBox.tscn")
