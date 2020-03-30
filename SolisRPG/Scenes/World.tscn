@@ -44,11 +44,13 @@ position = Vector2( 80, 136 )
 [node name="Tree4" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 112, 136 )
 
+[node name="Bush" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 208, 135 )
+collision_mask = 1
+
+[node name="Bush2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 208, 104 )
+collision_mask = 1
+
 [node name="Tree8" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 176, 104 )
-
-[node name="Bush" parent="YSort/Tree8" instance=ExtResource( 5 )]
-position = Vector2( 40, 32 )
-
-[node name="Bush2" parent="YSort/Tree8" instance=ExtResource( 5 )]
-position = Vector2( 40, 0 )

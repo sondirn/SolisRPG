@@ -3,7 +3,10 @@
 [ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=1]
 [ext_resource path="res://Objects/StaticObjects/DefaultTree/Scripts/FadableObjectOnCollision.gd" type="Script" id=3]
 
-[node name="Tree" type="StaticBody2D"]
+[node name="StaticObjectFadable" type="StaticBody2D" groups=[
+"static_entity",
+]]
+collision_mask = 0
 
 [node name="FadableObjectOnCollision" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -20,7 +23,7 @@ scale = Vector2( 0.25, 0.25 )
 
 [node name="AlphaCollider" type="Area2D" parent="."]
 visible = false
-collision_layer = 2
+collision_layer = 0
 __meta__ = {
 "_edit_lock_": true
 }

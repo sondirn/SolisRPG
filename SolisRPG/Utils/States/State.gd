@@ -2,16 +2,15 @@ extends Node
 
 class_name State
 
-var _hasEntered: bool = false
 
 func _prepare():
 	pass
 
 func _on_enter():
-	_hasEntered = true
+	pass
 
 func _on_exit():
-	_hasEntered = false
+	pass
 
 func _update(_delta):
 	pass

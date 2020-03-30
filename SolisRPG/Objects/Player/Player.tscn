@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Objects/Player/States/PlayerStateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/States/IdleState.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Assets/Player/Player.png" type="Texture" id=5]
 [ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=6]
 [ext_resource path="res://Utils/Camera.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Shadows/MediumShadow.png" type="Texture" id=8]
 
-[sub_resource type="CapsuleShape2D" id=22]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
 height = 32.0
 
@@ -76,6 +77,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 19, 20, 21, 22, 23, 18 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "RunHorizontal"
@@ -93,6 +106,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1, 2, 3, 4, 5, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "RunUp"
@@ -109,6 +134,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -178,6 +215,7 @@ start_node = "Idle"
 [node name="Player" type="KinematicBody2D" groups=[
 "moving_entity",
 ]]
+material = ExtResource( 6 )
 script = ExtResource( 3 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -185,14 +223,19 @@ visible = false
 position = Vector2( 0, -2 )
 rotation = 1.5708
 scale = Vector2( 0.25, 0.25 )
-shape = SubResource( 22 )
+shape = SubResource( 1 )
+
+[node name="shadow" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-show_behind_parent = true
-material = ExtResource( 6 )
+use_parent_material = true
 position = Vector2( 0, -13 )
+scale = Vector2( 1.1, 1 )
 texture = ExtResource( 5 )
 hframes = 60
+frame = 6
 __meta__ = {
 "_edit_lock_": true
 }
