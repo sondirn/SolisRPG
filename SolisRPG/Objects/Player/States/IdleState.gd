@@ -7,6 +7,9 @@ func _prepare():
 	Fsm = get_parent()
 	Parent = Fsm.get_parent()
 
+func _on_enter():
+	Parent.animationState.travel("Idle")
+
 func _update(delta):
 	Parent.velocity = Parent.velocity.move_toward(Vector2.ZERO, Parent.FRICTION * delta)
 	check_for_movement()

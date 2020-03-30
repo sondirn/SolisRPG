@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Assets/World/Tree.png" type="Texture" id=2]
+[ext_resource path="res://Objects/StaticObjects/DefaultTree/Scripts/FadableObjectOnCollision.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 12.0
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14, 13 )
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="FadableObjectOnCollision" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="FadableObjectOnCollision"]
+material = ExtResource( 1 )
+position = Vector2( 0, -24 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1, -3 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+shape = SubResource( 1 )
+
+[node name="AlphaCollider" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlphaCollider"]
+position = Vector2( 0, -17 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="AlphaCollider" to="FadableObjectOnCollision" method="_on_AlphaCollider_body_entered"]
+[connection signal="body_exited" from="AlphaCollider" to="FadableObjectOnCollision" method="_on_AlphaCollider_body_exited"]

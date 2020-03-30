@@ -6,6 +6,11 @@ export var ACCELERATION: float = 1200
 export var FRICTION: float = 1200
 export var MAX_SPEED: float = 100
 
+onready var animationPlayer: AnimationPlayer
+onready var animationTree: AnimationTree
+onready var animationState: AnimationNodeStateMachinePlayback
+onready var playerSprite: Sprite = $Sprite
+
 var velocity: Vector2
 
 #var animationPlayer: AnimationPlayer
@@ -17,9 +22,9 @@ var Fsm: StateMachine
 var _speed_modifier: float = 1
 
 func _ready():
-	#animationPlayer = $AnimationPlayer
-	#animationTree = $AnimationTree
-	#animationState = animationTree.get("parameters/playback")
+	animationPlayer = $AnimationPlayer
+	animationTree = $AnimationTree
+	animationState = animationTree.get("parameters/playback")
 	Fsm = get_node("StateMachine")
 	Fsm._prepare()
 
