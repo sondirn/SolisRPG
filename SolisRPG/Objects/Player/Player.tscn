@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Objects/Player/States/PlayerStateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/States/IdleState.gd" type="Script" id=2]
@@ -212,6 +212,9 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 7, 9 )
+
 [node name="Player" type="KinematicBody2D" groups=[
 "moving_entity",
 ]]
@@ -235,7 +238,6 @@ position = Vector2( 0, -13 )
 scale = Vector2( 1.1, 1 )
 texture = ExtResource( 5 )
 hframes = 60
-frame = 6
 __meta__ = {
 "_edit_lock_": true
 }
@@ -271,3 +273,13 @@ active = true
 parameters/playback = SubResource( 21 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
+
+[node name="hurt_box" type="Area2D" parent="." groups=[
+"hurt_box",
+]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="hurt_box_collider" type="CollisionShape2D" parent="hurt_box"]
+position = Vector2( 0, -9 )
+shape = SubResource( 22 )
