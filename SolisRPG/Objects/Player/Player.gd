@@ -6,6 +6,7 @@ export var ACCELERATION: float = 1200
 export var FRICTION: float = 1200
 export var MAX_SPEED: float = 100
 
+
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var animationTree: AnimationTree = $AnimationTree
 onready var animationState: AnimationNodeStateMachinePlayback = animationTree.get("parameters/playback")
