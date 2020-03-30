@@ -28,4 +28,4 @@ func _process(_delta):
 
 func _input(event):
 	if event.is_action_pressed("exit_game"):
-		get_tree().quit()
+		background_load.load_scene("res://Scenes/SandBox.tscn")

@@ -9,7 +9,7 @@ radius = 19.9999
 height = 32.0002
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14, 13 )
+extents = Vector2( 14, 14 )
 
 [node name="Tree" type="StaticBody2D" groups=[
 "static_entity",
@@ -25,6 +25,7 @@ position = Vector2( 0, -24 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 1, -5 )
 rotation = 1.5708
 scale = Vector2( 0.25, 0.25 )
@@ -38,7 +39,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlphaCollider"]
-position = Vector2( 0, -17 )
+position = Vector2( 0, -18 )
 shape = SubResource( 2 )
 [connection signal="body_entered" from="AlphaCollider" to="FadableObjectOnCollision" method="_on_AlphaCollider_body_entered"]
 [connection signal="body_exited" from="AlphaCollider" to="FadableObjectOnCollision" method="_on_AlphaCollider_body_exited"]
