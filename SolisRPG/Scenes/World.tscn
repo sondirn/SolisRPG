@@ -25,7 +25,7 @@ __meta__ = {
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 162.75, 141.65 )
+position = Vector2( 32.0817, 144 )
 
 [node name="Bush" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 80, 64 )
@@ -52,6 +52,6 @@ position = Vector2( 208, 96 )
 position = Vector2( 240, 48 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 7 )]
-position = Vector2( 296, 142 )
+position = Vector2( 577.47, 24 )
 scale = Vector2( 3.12541, 2.68 )
 target_scene = "res://Scenes/SandBox.tscn"

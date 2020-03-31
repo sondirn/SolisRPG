@@ -1,13 +1,18 @@
 extends CanvasLayer
 
-const SIMULATED_DELAY_SEC = 0.1
+const SIMULATED_DELAY_SEC = 0.1 	
 
 var thread = null
 
 onready var progress = ProgressBar
 onready var background = $Background
+var alpha: float = 0
+var fading: bool = false
+var destinationScene
+
 func _ready():
 	progress = get_node("Progress")
+	background.color = Color(0,0,0, alpha)
 
 func _thread_load(path):
 	var ril = ResourceLoader.load_interactive(path)
@@ -46,7 +51,7 @@ func _thread_done(resource):
 	
 	# Hide the progress bar.
 	progress.hide()
-	background.hide()
+	
 	
 	# Instantiate new scene.
 	var new_scene = resource.instance()
@@ -57,14 +62,41 @@ func _thread_done(resource):
 	get_tree().root.add_child(new_scene)
 	# Set as current scene.
 	get_tree().current_scene = new_scene
-	
-	
+	get_tree().current_scene.get_tree().paused = false
+	set_process(true)
 	progress.visible = false
-	background.visible = false
 
 func load_scene(path):
-	thread = Thread.new()
-	thread.start( self, "_thread_load", path)
-	raise() # Show on top.
-	progress.visible = true
+	destinationScene = path
+	#thread = Thread.new()
+	get_tree().current_scene.get_tree().paused = true
+	raise()
+	Ui.raise()
 	background.visible = true
+	fading = true
+	set_process(true)
+
+func _process(delta):
+	if(fading):
+		alpha += delta*3
+		background.color = Color(0,0,0,alpha)
+		if(alpha >= 1):
+			fading = false
+			thread = Thread.new()
+			thread.start(self, "_thread_load", destinationScene)
+			raise()
+			progress.visible = true
+			set_process(false)
+			
+	if(!fading):
+		alpha -= delta*3
+		background.color = Color(0,0,0,alpha)
+		if(alpha <= 0):
+			fading = true
+			background.visible = false
+			background.hide()
+			set_process(false)
+		
+		
+	
+	

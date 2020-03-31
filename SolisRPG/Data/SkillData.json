@@ -1,0 +1,12 @@
+{
+  "Fireball": {
+    "SkillType": "RangedSingleTarget",
+    "SkillDamage": 250,
+    "ManaCost": 10
+  },
+  "Ice_Spear": {
+    "SkillType": "RangedSingleTarget",
+    "SkillDamage": 90,
+    "ManaCost": 5
+  }
+}
