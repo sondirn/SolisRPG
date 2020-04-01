@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.31
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+gravity = Vector3( -100, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color = Color( 0.823529, 0.384314, 0, 1 )
+
+[node name="FireBall" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 50
+process_material = SubResource( 1 )

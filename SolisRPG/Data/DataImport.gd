@@ -9,3 +9,4 @@ func _ready():
 	skill_data_file.close()
 	skill_data = skill_data_json.result
 	print(skill_data)
+	 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Objects/Player/States/PlayerStateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/States/IdleState.gd" type="Script" id=2]
@@ -29,8 +29,24 @@ tracks/0/keys = {
 "values": [ 18 ]
 }
 
+[sub_resource type="Animation" id=23]
+resource_name = "IdleLeft"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
 [sub_resource type="Animation" id=3]
-resource_name = "IdleHorizontal"
+resource_name = "IdleRight"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -90,8 +106,37 @@ tracks/1/keys = {
 "values": [ Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=24]
+resource_name = "RunLeft"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=6]
-resource_name = "RunHorizontal"
+resource_name = "RunRight"
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -152,13 +197,13 @@ tracks/1/keys = {
 animation = "IdleDown"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "IdleHorizontal"
+animation = "IdleRight"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "IdleUp"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-animation = "IdleHorizontal"
+animation = "IdleLeft"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=12]
 blend_point_0/node = SubResource( 8 )
@@ -177,13 +222,13 @@ blend_mode = 1
 animation = "RunDown"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "RunHorizontal"
+animation = "RunRight"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "RunUp"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "RunHorizontal"
+animation = "RunLeft"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=17]
 blend_point_0/node = SubResource( 13 )
@@ -231,6 +276,7 @@ shape = SubResource( 1 )
 
 [node name="shadow" type="Sprite" parent="."]
 use_parent_material = true
+scale = Vector2( 1.2, 1 )
 texture = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -255,16 +301,18 @@ script = ExtResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 current = true
+zoom = Vector2( 0.5, 0.5 )
 smoothing_enabled = true
 script = ExtResource( 7 )
-cameraZoom = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleDown = SubResource( 2 )
-anims/IdleHorizontal = SubResource( 3 )
+anims/IdleLeft = SubResource( 23 )
+anims/IdleRight = SubResource( 3 )
 anims/IdleUp = SubResource( 4 )
 anims/RunDown = SubResource( 5 )
-anims/RunHorizontal = SubResource( 6 )
+anims/RunLeft = SubResource( 24 )
+anims/RunRight = SubResource( 6 )
 anims/RunUp = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -285,3 +333,4 @@ collision_mask = 2
 [node name="hurt_box_collider" type="CollisionShape2D" parent="hurt_box"]
 position = Vector2( 0, -9 )
 shape = SubResource( 22 )
+[connection signal="destination_reached" from="." to="StateMachine/RunState" method="_on_Player_destination_reached"]

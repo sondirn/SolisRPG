@@ -28,13 +28,13 @@ __meta__ = {
 position = Vector2( 32.0817, 144 )
 
 [node name="Bush" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 80, 64 )
+position = Vector2( 32.0817, 48 )
 
 [node name="Bush2" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 144, 64 )
 
 [node name="Tree" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 96, 104 )
+position = Vector2( 72.1838, 86 )
 
 [node name="Tree2" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 136, 128 )

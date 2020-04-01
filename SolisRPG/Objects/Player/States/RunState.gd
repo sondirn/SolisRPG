@@ -3,36 +3,32 @@ extends State
 var Parent: Player
 var Fsm: StateMachine
 
+var TRUE_MAX_SPEED: float
+
 func _prepare():
 	Fsm = get_parent()
 	Parent = Fsm.get_parent()
 
 func _on_enter():
 	Parent.animationState.travel("Run")
-
+	
+func _on_exit():
+	pass
+	
 func _update(delta):
-	var TRUE_MAX_SPEED = Parent.MAX_SPEED * Parent._speed_modifier
-	var input_vector = Vector2.ZERO
-	
-	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	
-	
-	if input_vector.x < 0:
-		Parent.playerSprite.flip_h = true
-	elif input_vector.x > 0:
-		Parent.playerSprite.flip_h = false
-	elif input_vector.y != 0 && input_vector.x == 0:
-		Parent.playerSprite.flip_h = false
-	
-	if input_vector == Vector2.ZERO:
-		Fsm.change_state("IdleState")
+	TRUE_MAX_SPEED = Parent.MAX_SPEED * Parent._speed_modifier * delta
+	Parent.move_in_path(TRUE_MAX_SPEED)
+	if Parent.path.size() == 0:
 		return
-	
-	
-	Parent.animationTree.set("parameters/Idle/blend_position", input_vector)
-	Parent.animationTree.set("parameters/Run/blend_position", input_vector)
-	input_vector = input_vector.normalized()
-	Parent.velocity = Parent.velocity.move_toward(input_vector * TRUE_MAX_SPEED, Parent.ACCELERATION * delta)
-	
+	var normalizedDir = Parent.velocity.normalized()
+	Parent.animationTree.set("parameters/Idle/blend_position", normalizedDir)
+	Parent.animationTree.set("parameters/Run/blend_position", normalizedDir)
 
+
+func _unhandled_input(event):
+	if Input.is_action_pressed("click"):
+		Parent.generate_path(Parent.scene.get_global_mouse_position())
+
+
+func _on_Player_destination_reached():
+	Fsm.change_state("IdleState")

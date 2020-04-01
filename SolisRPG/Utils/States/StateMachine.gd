@@ -5,7 +5,7 @@ class_name StateMachine, "res://icon.png"
 var Parent: Node
 var CurrentState: State
 var PreviousState: State
-var DEBUG: = false
+var DEBUG: = true
 
 func _prepare():
 	Parent = get_parent()

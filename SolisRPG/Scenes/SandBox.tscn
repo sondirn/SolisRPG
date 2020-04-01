@@ -1,62 +1,70 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Objects/StaticObjects/DefaultTree/Tree.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/StaticObjects/DefaultTree/DefaultTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/StaticObjects/DefaultBush/DefaultBush.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/World/GrassBackground.png" type="Texture" id=4]
-[ext_resource path="res://Shaders/JitterFreePixelArtMaterial.tres" type="Material" id=5]
 [ext_resource path="res://Objects/TransitionObjects/SceneTransition.tscn" type="PackedScene" id=6]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 0, 0, 368, 24, 364, 196, 128, 244, 16, 128 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( 0, 0, 368, 24, 364, 196, 128, 244, 16, 128 ) ]
 
 [node name="SandBox" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-material = ExtResource( 5 )
-margin_right = 748.0
-margin_bottom = 613.0
-texture = ExtResource( 4 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SceneTransition" parent="." instance=ExtResource( 6 )]
+position = Vector2( 260, 116 )
+scale = Vector2( 2.56, 2.36 )
+target_scene = "res://Scenes/IsoTest.tscn"
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 162.75, 141.65 )
-
 [node name="Tree7" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 176, 136 )
+collision_layer = 1
 
 [node name="Tree" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 80, 104 )
+collision_layer = 1
 
 [node name="Tree6" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 144, 104 )
+collision_layer = 1
 
 [node name="Tree5" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 144, 136 )
+collision_layer = 1
 
 [node name="Tree2" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 112, 104 )
+collision_layer = 1
 
 [node name="Tree3" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 80, 136 )
+collision_layer = 1
 
 [node name="Tree4" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 112, 136 )
+collision_layer = 1
 
 [node name="Bush" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 208, 135 )
+collision_layer = 1
 collision_mask = 1
 
 [node name="Bush2" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 208, 104 )
+collision_layer = 1
 collision_mask = 1
 
 [node name="Tree8" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 176, 104 )
+collision_layer = 1
 
-[node name="SceneTransition" parent="." instance=ExtResource( 6 )]
-position = Vector2( 264, 120 )
-scale = Vector2( 3.48836, -4.03801 )
-target_scene = "res://Scenes/World.tscn"
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 116, 172 )

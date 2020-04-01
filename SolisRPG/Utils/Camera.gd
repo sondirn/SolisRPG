@@ -12,10 +12,10 @@ func _input(event):
 		cameraZoom -= 0.05
 		zoom = Vector2(cameraZoom, cameraZoom)
 		if OS.is_debug_build():
-			print(cameraZoom)
+			print("camera zoom: ", cameraZoom)
 	if event.is_action_pressed("zoom_out"):
 		cameraZoom += 0.05
 		zoom = Vector2(cameraZoom, cameraZoom)
 		if OS.is_debug_build():
-			print(cameraZoom)
+			print("camera zoom: ", cameraZoom)
 	
