@@ -71,7 +71,7 @@ func load_scene(path):
 	#thread = Thread.new()
 	get_tree().current_scene.get_tree().paused = true
 	raise()
-	Ui.raise()
+	UI.raise()
 	background.visible = true
 	background.color = Color(0,0,0, alpha)
 	fading = true

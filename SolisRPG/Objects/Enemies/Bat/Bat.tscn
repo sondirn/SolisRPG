@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Objects/Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Enemies/Bat.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Enemies/Bat/Scripts/IdleState.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "IdleLeft"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[node name="Bat" instance=ExtResource( 1 )]
+
+[node name="Collider" parent="." index="0"]
+position = Vector2( 0, -4 )
+scale = Vector2( 0.25, 0.25 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 5
+frame = 3
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/IdleLeft = SubResource( 2 )
+anims/IdleRight = SubResource( 3 )
+
+[node name="AnimationTree" parent="." index="3"]
+parameters/playback = SubResource( 4 )
+parameters/BlendSpace1D/blend_position = -0.00146842
+
+[node name="HurtBox" parent="." index="4"]
+position = Vector2( 0, -6 )
+
+[node name="IdleState" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( 3 )

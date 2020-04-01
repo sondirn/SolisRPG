@@ -10,6 +10,8 @@ var DEBUG: = true
 func _prepare():
 	Parent = get_parent()
 	var children = get_children()
+	if children == null:
+		return
 	for child in children:
 		var state = child as State
 		state._prepare()
@@ -35,6 +37,8 @@ func prevoius_sate():
 	enter_state()
 	
 func _process(delta):
+	if CurrentState == null:
+		return
 	CurrentState._update(delta)
 	
 	

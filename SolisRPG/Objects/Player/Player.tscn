@@ -260,9 +260,10 @@ extents = Vector2( 7, 9 )
 "player",
 ]]
 material = ExtResource( 6 )
+collision_mask = 5
 script = ExtResource( 3 )
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, -2 )
 rotation = 1.5708
@@ -322,8 +323,6 @@ parameters/Run/blend_position = Vector2( 0, 0 )
 "hurt_box",
 ]]
 visible = false
-collision_layer = 2
-collision_mask = 2
 
 [node name="hurt_box_collider" type="CollisionShape2D" parent="hurt_box"]
 position = Vector2( 0, -9 )

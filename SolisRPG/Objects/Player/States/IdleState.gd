@@ -1,5 +1,5 @@
 extends State
-
+#PLAYER IDLE STATE 
 var Fsm: StateMachine
 var Parent: Player
 
@@ -9,11 +9,14 @@ func _prepare():
 
 func _on_enter():
 	Parent.animationState.travel("Idle")
+	set_process_unhandled_input(true)
+func _on_exit():
+	set_process_unhandled_input(false)
 
-func _update(delta):
-	check_for_movement()
+func _update(_delta):
+	pass#check_for_movement()
 	
-func check_for_movement() -> void:
+func _unhandled_input(_event) -> void:
 	if Input.is_action_pressed("click"):
 		Parent.generate_destination()
 		Fsm.change_state("RunState")

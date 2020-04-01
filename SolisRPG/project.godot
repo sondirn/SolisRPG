@@ -51,7 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 background_load="*res://Utils/BackgroundLoad.tscn"
-Ui="*res://UI/UI.tscn"
+UI="*res://UI/UI.tscn"
 DataImport="*res://Data/DataImport.gd"
 
 [display]
@@ -147,9 +147,15 @@ cast_spell={
 
 [layer_names]
 
-2d_physics/layer_1="collision"
-2d_physics/layer_2="projectile"
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="static_objects"
+
+[physics]
+
+2d/physics_engine="GodotPhysics"
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
