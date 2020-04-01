@@ -30,26 +30,11 @@ func _ready():
 	Fsm = get_node("StateMachine")
 	Fsm._prepare()
 	destination = position
+	set_process(false)
 	
-
-func _process(_delta):
-	#velocity = Vector2.ZERO
-	var move_distance:float = MAX_SPEED * _speed_modifier * _delta
-	if Input.is_action_pressed("click"):
-		destination = get_global_mouse_position()
-	var starting_point : Vector2 = position
-	var distance_to_destination = starting_point.distance_to(destination)
-	if distance_to_destination == 0:
-		return
-	var collision_check = starting_point.direction_to(destination)
-	if move_distance <= distance_to_destination:
-		var move_rotation = get_angle_to(starting_point.linear_interpolate(destination, move_distance / distance_to_destination))
-		var velocity = Vector2(MAX_SPEED * _speed_modifier, 0).rotated(move_rotation)
-		var collision = move_and_collide(collision_check * _delta)
-		velocity = move_and_slide(velocity)
-		if collision != null:
-			destination = position
-		
+func generate_destination() -> void:
+	destination = nav_2d.get_closest_point(get_global_mouse_position())
+	pass
 
 
 func _input(event):

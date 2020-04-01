@@ -73,6 +73,7 @@ func load_scene(path):
 	raise()
 	Ui.raise()
 	background.visible = true
+	background.color = Color(0,0,0, alpha)
 	fading = true
 	set_process(true)
 

@@ -14,6 +14,8 @@ scale = 5.0
 color = Color( 0.823529, 0.384314, 0, 1 )
 
 [node name="FireBall" type="RigidBody2D"]
+mode = 3
+mass = 0.00102041
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]

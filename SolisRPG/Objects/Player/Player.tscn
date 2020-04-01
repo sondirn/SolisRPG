@@ -328,4 +328,3 @@ collision_mask = 2
 [node name="hurt_box_collider" type="CollisionShape2D" parent="hurt_box"]
 position = Vector2( 0, -9 )
 shape = SubResource( 24 )
-[connection signal="destination_reached" from="." to="StateMachine/RunState" method="_on_Player_destination_reached"]
