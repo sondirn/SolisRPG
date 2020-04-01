@@ -10,7 +10,7 @@ vertices = PoolVector2Array( 0, 0, 368, 24, 364, 196, 128, 244, 16, 128 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
 outlines = [ PoolVector2Array( 0, 0, 368, 24, 364, 196, 128, 244, 16, 128 ) ]
 
-[node name="SandBox" type="Node2D"]
+[node name="Scene" type="Node2D"]
 
 [node name="SceneTransition" parent="." instance=ExtResource( 6 )]
 position = Vector2( 260, 116 )

@@ -15,7 +15,7 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var animationTree: AnimationTree = $AnimationTree
 onready var animationState: AnimationNodeStateMachinePlayback = animationTree.get("parameters/playback")
 onready var sprite: Sprite = $Sprite
-onready var scene: Node2D = get_parent().get_parent().get_parent()
+onready var scene: Node2D = get_tree().root.get_node("Scene")
 onready var nav_2d: Navigation2D = scene.get_node("Navigation2D")
 
 var Fsm: StateMachine
