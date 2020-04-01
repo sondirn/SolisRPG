@@ -10,8 +10,8 @@
 [ext_resource path="res://Assets/Shadows/MediumShadow.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 32.0
+radius = 3.99994
+height = 40.0001
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleDown"
@@ -263,13 +263,6 @@ material = ExtResource( 6 )
 collision_mask = 5
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, -2 )
-rotation = 1.5708
-scale = Vector2( 0.25, 0.25 )
-shape = SubResource( 1 )
-
 [node name="shadow" type="Sprite" parent="."]
 use_parent_material = true
 scale = Vector2( 1.2, 1 )
@@ -284,6 +277,12 @@ hframes = 60
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+shape = SubResource( 1 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
