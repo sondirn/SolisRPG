@@ -26,8 +26,9 @@ func _update(delta):
 
 
 func _unhandled_input(event):
-	if Input.is_action_pressed("click"):
-		Parent.generate_path(Parent.scene.get_global_mouse_position())
+	if event.is_action("click"):
+		pass
+		#Parent.generate_path(Parent.scene.get_global_mouse_position())
 
 
 func _on_Player_destination_reached():

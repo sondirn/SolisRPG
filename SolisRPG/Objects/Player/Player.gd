@@ -18,6 +18,7 @@ onready var nav_2d: Navigation2D = scene.get_node("Navigation2D")
 
 
 var path := PoolVector2Array()
+var destination: Vector2 = Vector2.ZERO
 
 var velocity: Vector2
 
@@ -31,14 +32,18 @@ func _ready():
 	
 
 func _process(_delta):
-	velocity = Vector2.ZERO
-	var move_distance:float = MAX_SPEED * _speed_modifier * _delta
+	#velocity = Vector2.ZERO
+	var move_distance:float = MAX_SPEED * _speed_modifier
+	var velocity = (destination - position).normalized() * move_distance
+	if (destination - position).length() > 5:
+		velocity = move_and_slide(velocity)
+	pass
 	
 func generate_path(destinationPoint: Vector2):
-	if Input.is_action_pressed("click"):
-		var closest_destination = nav_2d.get_closest_point(destinationPoint)
-		var new_path := nav_2d.get_simple_path(position, closest_destination)
-		path = new_path
+	
+	var closest_destination = nav_2d.get_closest_point(destinationPoint)
+	var new_path := nav_2d.get_simple_path(position, closest_destination)
+	path = new_path
 		
 
 func move_in_path(move_distance: float) -> void:
@@ -57,10 +62,13 @@ func move_in_path(move_distance: float) -> void:
 		emit_signal("destination_reached")
 
 func _input(event):
-	if Input.is_action_pressed("shift_modifier") && event.is_action_pressed("click"):
+	if Input.is_action_pressed("click"):
+		destination = get_global_mouse_position()
+	if Input.is_action_pressed("shift_modifier") && event.is_action_pressed("cast_spell"):
 		var fireball = load ("res://Objects/Spells/FireBall.tscn")
 		var fireball_instance = fireball.instance()
 		fireball_instance.position = position
+		fireball_instance.rotation = get_angle_to(get_global_mouse_position())
 		get_parent().add_child(fireball_instance)
 		fireball_instance = null
 		fireball = null
