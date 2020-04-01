@@ -39,6 +39,8 @@ func _process(_delta):
 		destination = get_global_mouse_position()
 	var starting_point : Vector2 = position
 	var distance_to_destination = starting_point.distance_to(destination)
+	if distance_to_destination == 0:
+		return
 	var collision_check = starting_point.direction_to(destination)
 	if move_distance <= distance_to_destination:
 		var move_rotation = get_angle_to(starting_point.linear_interpolate(destination, move_distance / distance_to_destination))
