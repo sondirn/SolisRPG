@@ -40,32 +40,36 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Bush4" parent="YSort" instance=ExtResource( 3 )]
+[node name="Enemies" type="YSort" parent="YSort"]
+
+[node name="Bat" parent="YSort/Enemies" instance=ExtResource( 7 )]
+position = Vector2( -100, 12 )
+
+[node name="StaticEntities" type="YSort" parent="YSort"]
+
+[node name="Bush4" parent="YSort/StaticEntities" instance=ExtResource( 3 )]
 position = Vector2( -312, 72 )
 
-[node name="Tree" parent="YSort" instance=ExtResource( 4 )]
+[node name="Tree" parent="YSort/StaticEntities" instance=ExtResource( 4 )]
 position = Vector2( -60, -28 )
 
-[node name="Tree2" parent="YSort" instance=ExtResource( 4 )]
+[node name="Tree2" parent="YSort/StaticEntities" instance=ExtResource( 4 )]
 position = Vector2( -32, -28 )
 
-[node name="Tree3" parent="YSort" instance=ExtResource( 4 )]
+[node name="Tree3" parent="YSort/StaticEntities" instance=ExtResource( 4 )]
 position = Vector2( -4, -28 )
 
-[node name="Tree4" parent="YSort" instance=ExtResource( 4 )]
+[node name="Tree4" parent="YSort/StaticEntities" instance=ExtResource( 4 )]
 position = Vector2( 24, -28 )
 
-[node name="Bush" parent="YSort" instance=ExtResource( 3 )]
+[node name="Bush" parent="YSort/StaticEntities" instance=ExtResource( 3 )]
 position = Vector2( -160, 86 )
 
-[node name="Bush2" parent="YSort" instance=ExtResource( 3 )]
+[node name="Bush2" parent="YSort/StaticEntities" instance=ExtResource( 3 )]
 position = Vector2( -72, 118 )
 
-[node name="Bush3" parent="YSort" instance=ExtResource( 3 )]
+[node name="Bush3" parent="YSort/StaticEntities" instance=ExtResource( 3 )]
 position = Vector2( 8, 86 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( -180, -8 )
-
-[node name="Bat" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( -100, 12 )
